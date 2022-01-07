@@ -9,7 +9,7 @@ class Sellers(Client):
     """
 
     @sp_endpoint('/sellers/v1/marketplaceParticipations')
-    def get_marketplace_participation(self, **kwargs) -> ApiResponse:
+    def get_marketplace_participation(self, **kwargs):
         """
         get_marketplace_participation(self, **kwargs) -> ApiResponse
         Returns a list of marketplaces that the seller submitting the request can sell in and information about the seller's participation in those marketplaces.
