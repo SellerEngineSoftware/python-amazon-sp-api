@@ -1,6 +1,5 @@
-from typing import Optional, List, Dict, Union
-import urllib.parse
-
+# -*- coding: future_fstrings -*-
+import six.moves.urllib as urllib
 from sp_api.base import ApiResponse, Client, fill_query_params, sp_endpoint
 from sp_api.api.products.products_definitions import GetItemOffersBatchRequest, ItemOffersRequest
 
@@ -11,7 +10,7 @@ class Products(Client):
     """
 
     @sp_endpoint('/products/pricing/v0/price', method='GET')
-    def get_product_pricing_for_skus(self, seller_sku_list: [str], item_condition=None, offer_type=None, **kwargs) -> ApiResponse:
+    def get_product_pricing_for_skus(self, seller_sku_list, item_condition=None, offer_type=None, **kwargs):
         """
         get_product_pricing_for_skus(self, seller_sku_list: [str], item_condition: str = None, **kwargs) -> ApiResponse
         Returns pricing information for a seller's offer listings based on SKU.
@@ -46,7 +45,7 @@ class Products(Client):
         return self._create_get_pricing_request(seller_sku_list, 'Sku', **kwargs)
 
     @sp_endpoint('/products/pricing/v0/price', method='GET')
-    def get_product_pricing_for_asins(self, asin_list: [str], item_condition=None, offer_type=None, **kwargs) -> ApiResponse:
+    def get_product_pricing_for_asins(self, asin_list, item_condition=None, offer_type=None, **kwargs):
         """
         get_product_pricing_for_asins(self, asin_list: [str], item_condition=None, **kwargs) -> ApiResponse
         Returns pricing information for a seller's offer listings based on ASIN.
@@ -79,7 +78,7 @@ class Products(Client):
         return self._create_get_pricing_request(asin_list, 'Asin', **kwargs)
 
     @sp_endpoint('/products/pricing/v0/competitivePrice', method='GET')
-    def get_competitive_pricing_for_skus(self, seller_sku_list: [str], customer_type=None, **kwargs) -> ApiResponse:
+    def get_competitive_pricing_for_skus(self, seller_sku_list, customer_type=None, **kwargs):
         """
         get_competitive_pricing_for_skus(self, seller_sku_list, **kwargs) -> ApiResponse
         Returns competitive pricing information for a seller's offer listings based on Seller Sku
@@ -111,7 +110,7 @@ class Products(Client):
         return self._create_get_pricing_request(seller_sku_list, 'Sku', **kwargs)
 
     @sp_endpoint('/products/pricing/v0/competitivePrice', method='GET')
-    def get_competitive_pricing_for_asins(self, asin_list: [str], customer_type=None, **kwargs) -> ApiResponse:
+    def get_competitive_pricing_for_asins(self, asin_list, customer_type=None, **kwargs):
         """
         get_competitive_pricing_for_asins(self, asin_list, **kwargs) -> ApiResponse
         Returns competitive pricing information for a seller's offer listings based on ASIN
@@ -143,7 +142,7 @@ class Products(Client):
         return self._create_get_pricing_request(asin_list, 'Asin', **kwargs)
 
     @sp_endpoint('/products/pricing/v0/listings/{}/offers', method='GET')
-    def get_listings_offer(self, seller_sku: str, item_condition: str, customer_type: str = None, **kwargs) -> ApiResponse:
+    def get_listings_offer(self, seller_sku, item_condition, customer_type=None, **kwargs):
         """
         get_listings_offer(self, seller_sku: str, **kwargs) -> ApiResponse
         Returns the lowest priced offers for a single SKU listing
@@ -172,10 +171,10 @@ class Products(Client):
         if customer_type is not None:
             kwargs['CustomerType'] = customer_type
 
-        return self._request(fill_query_params(kwargs.pop('path'), seller_sku), params={**kwargs})       
+        return self._request(fill_query_params(kwargs.pop('path'), seller_sku), params=dict(kwargs))       
 
     @sp_endpoint('/products/pricing/v0/items/{}/offers', method='GET')
-    def get_item_offers(self, asin: str, item_condition: str, customer_type: str = None, **kwargs) -> ApiResponse:
+    def get_item_offers(self, asin, item_condition, customer_type=None, **kwargs):
         """
         get_item_offers(self, asin: str, **kwargs) -> ApiResponse
         Returns the lowest priced offers for a single item based on ASIN
@@ -207,8 +206,8 @@ class Products(Client):
         return self._request(fill_query_params(kwargs.pop('path'), asin), params={**kwargs})
 
     @sp_endpoint('/batches/products/pricing/v0/itemOffers', method='POST')
-    def get_item_offers_batch(self, requests_: Optional[Union[List[Dict], GetItemOffersBatchRequest]] = None,
-                              **kwargs) -> ApiResponse:
+    def get_item_offers_batch(self, requests_ = None,
+                              **kwargs):
         """
         get_item_offers_batch(self, requests_: Optional[List[Union[Dict, ItemOffersRequest]]], **kwargs) -> ApiResponse
         Returns the lowest priced offers for a batch of items based on ASIN.
@@ -238,15 +237,12 @@ class Products(Client):
                              add_marketplace=False)
 
     def _create_get_pricing_request(self, item_list, item_type, **kwargs):
-        return self._request(kwargs.pop('path'),
-                             params={**{f"{item_type}s": ','.join(
-                                 [urllib.parse.quote_plus(s) for s in item_list])},
-                                     'ItemType': item_type,
-                                     **({'ItemCondition': kwargs.pop(
-                                         'ItemCondition')} if 'ItemCondition' in kwargs else {}),
-                                     **({'CustomerType': kwargs.pop(
-                                         'CustomerType')} if 'CustomerType' in kwargs else {}),
-                                     **({'OfferType': kwargs.pop(
-                                         'OfferType')} if 'OfferType' in kwargs else {}),
-                                     'MarketplaceId': kwargs.get('MarketplaceId', self.marketplace_id)})
+        params = {}
+        params[f"{item_type}s"]=','.join([urllib.parse.quote_plus(s) for s in item_list])
+        params['ItemType']=item_type
+        params.update({'ItemCondition': kwargs.pop('ItemCondition')} if 'ItemCondition' in kwargs else {})
+        params.update({'CustomerType': kwargs.pop('CustomerType')} if 'CustomerType' in kwargs else {})
+        params.update({'OfferType': kwargs.pop('OfferType')} if 'OfferType' in kwargs else {})
+        params['MarketplaceId']=kwargs.get('MarketplaceId', self.marketplace_id)
+        return self._request(kwargs.pop('path'), params=params)
 

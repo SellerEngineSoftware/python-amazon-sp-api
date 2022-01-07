@@ -1,4 +1,4 @@
-import urllib.parse
+import six.moves.urllib as urllib
 
 from sp_api.base import Client, sp_endpoint, fill_query_params, ApiResponse
 
@@ -12,9 +12,9 @@ class VendorInvoices(Client):
     """
 
     @sp_endpoint('/vendor/payments/v1/invoices', method='POST')
-    def submit_invoices(self, data, **kwargs) -> ApiResponse:
+    def submit_invoices(self, data, **kwargs):
         """
-        submit_invoices(self, data, **kwargs) -> ApiResponse
+        submit_invoices(self, data, **kwargs)
 
         Submit new invoices to Amazon.
 
