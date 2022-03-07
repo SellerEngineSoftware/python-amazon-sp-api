@@ -6,12 +6,15 @@ setup(
     name='python-amazon-sp-api',
     version=__version__,
     install_requires=[
-        "requests",
-        "six>=1.15,<2",
-        "boto3>=1.16.39,<2",
-        "cachetools>=4.2,<5.3",
-        "pytz",
-        "confuse>=1.4,<2.1"
+        "requests==2.25.1",
+        "six==1.16.0",
+        "boto3==1.16.63",
+        "cachetools==3.1.1",
+        "setuptools==44.0.0",
+        "pytz==2020.5",
+        "confuse==1.4.0",
+        "enum34==1.1.10",
+        "future-fstrings==1.2.0"
     ],
     packages=['tests', 'tests.api', 'tests.api.orders', 'tests.api.sellers', 'tests.api.finances',
               'tests.api.product_fees', 'tests.api.notifications', 'tests.api.reports', 'tests.client',
