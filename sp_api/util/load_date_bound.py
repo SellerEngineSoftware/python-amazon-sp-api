@@ -1,14 +1,14 @@
 import datetime
 
 
-def load_date_bound(interval_days: int = 30):
-    def make_end_date(s: datetime, e: datetime, i: int):
+def load_date_bound(interval_days = 30):
+    def make_end_date(s, e, i):
         end_date = s + datetime.timedelta(days=i)
         if end_date > e:
             return e
         return end_date
 
-    def parse_if_needed(dt: datetime or str):
+    def parse_if_needed(dt):
         if isinstance(dt, datetime.datetime):
             return dt
         return datetime.datetime.fromisoformat(dt)
