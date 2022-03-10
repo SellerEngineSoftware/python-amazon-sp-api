@@ -202,7 +202,7 @@ class Products(Client):
         if customer_type is not None:
             kwargs['CustomerType'] = customer_type
 
-        return self._request(fill_query_params(kwargs.pop('path'), asin), params={**kwargs})
+        return self._request(fill_query_params(kwargs.pop('path'), asin), params=dict(kwargs))
 
     def _create_get_pricing_request(self, item_list, item_type, **kwargs):
         params = {}
