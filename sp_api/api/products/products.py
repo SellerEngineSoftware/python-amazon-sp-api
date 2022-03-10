@@ -203,7 +203,7 @@ class Products(Client):
         if customer_type is not None:
             kwargs['CustomerType'] = customer_type
 
-        return self._request(fill_query_params(kwargs.pop('path'), asin), params={**kwargs})
+        return self._request(fill_query_params(kwargs.pop('path'), asin), params=dict(kwargs))
 
     @sp_endpoint('/batches/products/pricing/v0/itemOffers', method='POST')
     def get_item_offers_batch(self, requests_ = None,

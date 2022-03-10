@@ -1,3 +1,4 @@
+# -*- coding: future_fstrings -*-
 from sp_api.__version__ import __version__
 
 
