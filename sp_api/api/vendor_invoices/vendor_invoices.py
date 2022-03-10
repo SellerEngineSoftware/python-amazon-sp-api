@@ -289,4 +289,4 @@ class VendorInvoices(Client):
             ApiResponse:
         """
     
-        return self._request(kwargs.pop('path'),  data={**data, **kwargs}, add_marketplace=False)
+        return self._request(kwargs.pop('path'), data=dict(data, **kwargs), add_marketplace=False)
