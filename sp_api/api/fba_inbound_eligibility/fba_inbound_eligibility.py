@@ -42,7 +42,7 @@ class FbaInboundEligibility(Client):
         return self._request(kwargs.pop('path'),  params=kwargs)
 
     @sp_endpoint('/fba/inbound/v1/eligibility/itemPreview', method='GET')
-    def get_item_eligibility_preview_extended(self, **kwargs) -> ApiResponse:
+    def get_item_eligibility_preview_extended(self, **kwargs):
         """
         get_item_eligibility_preview_extended(self, **kwargs) -> ApiResponse
 
