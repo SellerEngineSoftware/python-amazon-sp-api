@@ -1,4 +1,3 @@
-# -*- coding: future_fstrings -*-
 """
 Country	marketplaceId	Country code
 Canada	A2EUQ1WTGCTBG2	CA
@@ -51,30 +50,30 @@ class Marketplaces(Enum):
         marketplace_id = Marketplaces.UK.marketplace_id
     """
 
-    AE = (f"{BASE_URL}-eu.amazon.com", "A2VIGQ35RCS4UG", "eu-west-1")
-    BE = (f"{BASE_URL}-eu.amazon.com", "AMEN7PMS3EDWL", "eu-west-1")
-    DE = (f"{BASE_URL}-eu.amazon.com", "A1PA6795UKMFR9", "eu-west-1")
-    PL = (f"{BASE_URL}-eu.amazon.com", "A1C3SOZRARQ6R3", "eu-west-1")
-    EG = (f"{BASE_URL}-eu.amazon.com", "ARBP9OOSHTCHU", "eu-west-1")
-    ES = (f"{BASE_URL}-eu.amazon.com", "A1RKKUPIHCS9HS", "eu-west-1")
-    FR = (f"{BASE_URL}-eu.amazon.com", "A13V1IB3VIYZZH", "eu-west-1")
-    GB = (f"{BASE_URL}-eu.amazon.com", "A1F83G8C2ARO7P", "eu-west-1")
-    IN = (f"{BASE_URL}-eu.amazon.com", "A21TJRUUN4KGV", "eu-west-1")
-    IT = (f"{BASE_URL}-eu.amazon.com", "APJ6JRA9NG5V4", "eu-west-1")
-    NL = (f"{BASE_URL}-eu.amazon.com", "A1805IZSGTT6HS", "eu-west-1")
-    SA = (f"{BASE_URL}-eu.amazon.com", "A17E79C6D8DWNP", "eu-west-1")
-    SE = (f"{BASE_URL}-eu.amazon.com", "A2NODRKZP88ZB9", "eu-west-1")
-    TR = (f"{BASE_URL}-eu.amazon.com", "A33AVAJ2PDY3EV", "eu-west-1")
-    UK = (f"{BASE_URL}-eu.amazon.com", "A1F83G8C2ARO7P", "eu-west-1")  # alias for GB
+    AE = (BASE_URL+"-eu.amazon.com", "A2VIGQ35RCS4UG", "eu-west-1")
+    BE = (BASE_URL+"-eu.amazon.com", "AMEN7PMS3EDWL", "eu-west-1")
+    DE = (BASE_URL+"-eu.amazon.com", "A1PA6795UKMFR9", "eu-west-1")
+    PL = (BASE_URL+"-eu.amazon.com", "A1C3SOZRARQ6R3", "eu-west-1")
+    EG = (BASE_URL+"-eu.amazon.com", "ARBP9OOSHTCHU", "eu-west-1")
+    ES = (BASE_URL+"-eu.amazon.com", "A1RKKUPIHCS9HS", "eu-west-1")
+    FR = (BASE_URL+"-eu.amazon.com", "A13V1IB3VIYZZH", "eu-west-1")
+    GB = (BASE_URL+"-eu.amazon.com", "A1F83G8C2ARO7P", "eu-west-1")
+    IN = (BASE_URL+"-eu.amazon.com", "A21TJRUUN4KGV", "eu-west-1")
+    IT = (BASE_URL+"-eu.amazon.com", "APJ6JRA9NG5V4", "eu-west-1")
+    NL = (BASE_URL+"-eu.amazon.com", "A1805IZSGTT6HS", "eu-west-1")
+    SA = (BASE_URL+"-eu.amazon.com", "A17E79C6D8DWNP", "eu-west-1")
+    SE = (BASE_URL+"-eu.amazon.com", "A2NODRKZP88ZB9", "eu-west-1")
+    TR = (BASE_URL+"-eu.amazon.com", "A33AVAJ2PDY3EV", "eu-west-1")
+    UK = (BASE_URL+"-eu.amazon.com", "A1F83G8C2ARO7P", "eu-west-1")  # alias for GB
 
-    AU = (f"{BASE_URL}-fe.amazon.com", "A39IBJ37TRP1C6", "us-west-2")
-    JP = (f"{BASE_URL}-fe.amazon.com", "A1VC38T7YXB528", "us-west-2")
-    SG = (f"{BASE_URL}-fe.amazon.com", "A19VAU5U5O7RUS", "us-west-2")
+    AU = (BASE_URL+"-fe.amazon.com", "A39IBJ37TRP1C6", "us-west-2")
+    JP = (BASE_URL+"-fe.amazon.com", "A1VC38T7YXB528", "us-west-2")
+    SG = (BASE_URL+"-fe.amazon.com", "A19VAU5U5O7RUS", "us-west-2")
 
-    US = (f"{BASE_URL}-na.amazon.com", "ATVPDKIKX0DER", "us-east-1")
-    BR = (f"{BASE_URL}-na.amazon.com", "A2Q3Y263D00KWC", "us-east-1")
-    CA = (f"{BASE_URL}-na.amazon.com", "A2EUQ1WTGCTBG2", "us-east-1")
-    MX = (f"{BASE_URL}-na.amazon.com", "A1AM78C64UM0Y8", "us-east-1")
+    US = (BASE_URL+"-na.amazon.com", "ATVPDKIKX0DER", "us-east-1")
+    BR = (BASE_URL+"-na.amazon.com", "A2Q3Y263D00KWC", "us-east-1")
+    CA = (BASE_URL+"-na.amazon.com", "A2EUQ1WTGCTBG2", "us-east-1")
+    MX = (BASE_URL+"-na.amazon.com", "A1AM78C64UM0Y8", "us-east-1")
 
     def __init__(self, endpoint, marketplace_id, region):
         self.endpoint = endpoint
