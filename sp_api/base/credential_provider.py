@@ -1,4 +1,3 @@
-# -*- coding: future_fstrings -*-
 import json
 import os
 
@@ -41,10 +40,12 @@ class BaseCredentialProvider(object):
             self.errors = [c for c in required_credentials if
                            c not in self.credentials.keys() or not self.credentials[c]]
         except (AttributeError, TypeError):
-            raise MissingCredentials(f'Credentials are missing: {", ".join(required_credentials)}')
+            creds = ", ".join(required_credentials)
+            raise MissingCredentials('Credentials are missing: {creds}'.format(creds=creds))
         if not len(self.errors):
             return self.credentials
-        raise MissingCredentials(f'Credentials are missing: {", ".join(self.errors)}')
+        errors = ", ".join(self.errors)
+        raise MissingCredentials('Credentials are missing: {errors}'.format(errors=errors))
 
 
 class FromCodeCredentialProvider(BaseCredentialProvider):
@@ -105,7 +106,7 @@ class FromEnvironmentVariablesCredentialProvider(BaseCredentialProvider):
         self.credentials = account_data
 
     def _get_env(self, key):
-        return os.environ.get(f'{key}_{self.account}',
+        return os.environ.get('{key}_{account}'.format(key=key, account=self.account),
                               os.environ.get(key))
 
 
@@ -131,7 +132,8 @@ class CredentialProvider:
         if self.credentials:
             self.credentials = self.Config(**self.credentials)
         else:
-            raise MissingCredentials(f'Credentials are missing: {", ".join(required_credentials)}')
+            creds = ", ".join(required_credentials)
+            raise MissingCredentials('Credentials are missing: {creds}'.format(creds=creds))
 
     class Config:
         def __init__(self, **kwargs):
