@@ -20,6 +20,13 @@ class SellingApiException(Exception):
         self.error = error
         self.headers = headers
 
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return '{name}: {error}: {message}'.format(name = self.__class__.__name__,
+                error = self.amzn_code, message = self.message)
+
 
 class SellingApiBadRequestException(SellingApiException):
     """
