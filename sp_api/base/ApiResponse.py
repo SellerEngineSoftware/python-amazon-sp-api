@@ -58,6 +58,9 @@ class ApiResponse:
         if kwargs != self.payload:
             self.kwargs = kwargs
 
+    def __repr__(self):
+        return self.__str__()
+        
     def __str__(self):
         return pprint.pformat(vars(self))
 
