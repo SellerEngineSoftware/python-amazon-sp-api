@@ -1,4 +1,4 @@
-from urllib.parse import quote_plus
+from six.moves.urllib.parse import quote_plus
 
 from sp_api.base.helpers import sp_endpoint, fill_query_params
 from sp_api.base import Client, ApiResponse
