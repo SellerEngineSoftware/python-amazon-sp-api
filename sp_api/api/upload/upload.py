@@ -1,6 +1,6 @@
 from sp_api.base import Client, sp_endpoint
 from sp_api.base.helpers import create_md5, fill_query_params
-import urllib.parse
+from six.moves import urllib
 
 
 class Upload(Client):
