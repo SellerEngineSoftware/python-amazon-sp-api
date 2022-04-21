@@ -12,7 +12,7 @@ setup(
         "cachetools==3.1.1",
         "setuptools==44.0.0",
         "pytz==2020.5",
-        "confuse==1.4.0",
+        "confuse==1.7.0",
         "enum34==1.1.10",
         "future-fstrings==1.2.0"
     ],
