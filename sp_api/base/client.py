@@ -32,7 +32,6 @@ class Client(BaseClient):
             self,
             marketplace, #: Marketplaces = Marketplaces[
                 # os.environ.get('SP_API_DEFAULT_MARKETPLACE', Marketplaces.US.name)],
-            *,
             refresh_token=None,
             account='default',
             credentials=None,
@@ -113,7 +112,7 @@ class Client(BaseClient):
                         aws_session_token=aws_session_token
                         )
 
-    def _request(self, path, *, data=None, params=None, headers=None,
+    def _request(self, path, data=None, params=None, headers=None,
                  add_marketplace=True, res_no_data=False, bulk=False):
         if params is None:
             params = {}
