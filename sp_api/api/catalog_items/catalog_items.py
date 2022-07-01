@@ -1,5 +1,4 @@
 import enum
-import six.moves.urllib as urllib
 
 from sp_api.base import Client, sp_endpoint, fill_query_params, ApiResponse
 
@@ -10,7 +9,7 @@ class CatalogItemsVersion(str, enum.Enum):
     LATEST = "2022-04-01"
 
 
-class CatalogItems(Client):
+class CatalogItems(Client, object):
     """
     CatalogItems SP-API Client
     :link:
@@ -18,12 +17,12 @@ class CatalogItems(Client):
     The Selling Partner API for Catalog Items provides programmatic access to information about items in the Amazon catalog.
     """
 
-    version: CatalogItemsVersion = CatalogItemsVersion.V_2020_12_01
+    version = CatalogItemsVersion.V_2020_12_01
 
     def __init__(self, *args, **kwargs):
         if 'version' in kwargs:
             self.version = kwargs.get('version', CatalogItemsVersion.V_2020_12_01)
-        super().__init__(*args, **{**kwargs, 'version': self.version})
+        super(CatalogItems, self).__init__(*args, **dict(kwargs, version = self.version))
 
     @sp_endpoint('/catalog/<version>/items', method='GET')
     def search_catalog_items(self, **kwargs):
