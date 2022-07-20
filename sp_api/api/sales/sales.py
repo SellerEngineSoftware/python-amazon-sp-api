@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import urllib
+import six.moves.urllib as urllib
 from datetime import datetime
 
 from sp_api.base import Client, Marketplaces, sp_endpoint, Granularity, ApiResponse
