@@ -1,4 +1,4 @@
-import urllib
+import six.moves.urllib as urllib
 
 from sp_api.base import Client, Marketplaces, sp_endpoint, ApiResponse
 from sp_api.base.InventoryEnums import InventoryGranularity
