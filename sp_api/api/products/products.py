@@ -232,7 +232,7 @@ class Products(Client):
         else:
             get_item_offers_batch_request = {"requests": requests_}
 
-        return self._request(kwargs.pop('path'), data=get_item_offers_batch_request, params={**kwargs},
+        return self._request(kwargs.pop('path'), data=get_item_offers_batch_request, params=dict(**kwargs),
                              add_marketplace=False)
 
     def _create_get_pricing_request(self, item_list, item_type, **kwargs):
