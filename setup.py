@@ -8,7 +8,7 @@ setup(
     install_requires=[
         "requests==2.25.1",
         "six==1.16.0",
-        "boto3==1.16.63",
+        "boto3==1.24.72",
         "cachetools==3.1.1",
         "setuptools==44.0.0",
         "pytz==2020.5",
