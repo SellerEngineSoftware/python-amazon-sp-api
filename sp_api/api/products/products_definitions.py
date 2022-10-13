@@ -1,4 +1,3 @@
-from typing import Dict
 import copy
 
 class ItemOffersRequest:
@@ -48,7 +47,7 @@ class GetItemOffersBatchRequest:
         parsed_requestes = []
 
         for request in requests:
-            if isinstance(request, Dict):
+            if isinstance(request, dict):
                 request = ItemOffersRequest(**request)
 
             if not isinstance(request, ItemOffersRequest):
