@@ -11,7 +11,7 @@ setup(
         "boto3==1.16.63",
         "cachetools==3.1.1",
         "setuptools==44.0.0",
-        "pytz==2020.5",
+        "pytz==2022.5",
         "confuse==1.4.0",
         "enum34==1.1.10",
         "future-fstrings==1.2.0"
