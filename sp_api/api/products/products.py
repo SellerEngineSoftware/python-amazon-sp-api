@@ -1,4 +1,3 @@
-import six.moves.urllib as urllib
 from sp_api.base import ApiResponse, Client, fill_query_params, sp_endpoint
 from sp_api.api.products.products_definitions import GetItemOffersBatchRequest, ItemOffersRequest
 
@@ -237,7 +236,7 @@ class Products(Client):
 
     def _create_get_pricing_request(self, item_list, item_type, **kwargs):
         params = {}
-        params["{item_type}s".format(item_type=item_type)]=','.join([urllib.parse.quote_plus(s) for s in item_list])
+        params["{item_type}s".format(item_type=item_type)]=','.join(item_list)
         params['ItemType']=item_type
         params.update({'ItemCondition': kwargs.pop('ItemCondition')} if 'ItemCondition' in kwargs else {})
         params.update({'CustomerType': kwargs.pop('CustomerType')} if 'CustomerType' in kwargs else {})
