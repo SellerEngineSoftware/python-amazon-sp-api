@@ -418,7 +418,7 @@ class FulfillmentInbound(Client):
         """
         return self._request(kwargs.pop("path"), params=kwargs)
 
-    def get_shipments_by_id(self, shipment_id_list, **kwargs) -> ApiResponse:
+    def get_shipments_by_id(self, shipment_id_list, **kwargs):
         """
         get_shipments_by_id(self, shipment_id_list, **kwargs) -> ApiResponse
 

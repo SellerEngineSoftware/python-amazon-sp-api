@@ -235,7 +235,7 @@ class Orders(Client):
         return self._request(fill_query_params(kwargs.pop('path'), order_id), params=kwargs)
 
     @sp_endpoint('/orders/v0/orders/{}/shipment', method='POST')
-    def update_shipment_status(self, order_id: str, **kwargs) -> ApiResponse:
+    def update_shipment_status(self, order_id, **kwargs):
         """
         update_shipment_status(self, order_id: str, **kwargs) -> ApiResponse
         Update the shipment status.
